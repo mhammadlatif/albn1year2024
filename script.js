@@ -19,14 +19,16 @@ function displayInfo() {
 
         // Find the student data based on the phone number
         var student = jsonData.find(function (student) {
-            return student["Applicant Phone Number"] === phoneNumber;
+            return student["Phone last 7 digits"] === phoneNumber;
         });
 
         var infoContainer = document.getElementById("infoContainer");
         if (student) {
+            var applicantName = student["Applicant Name"];
             var section = student["Section"];
-            var teacherName = student["Murabbi name"];
-            infoContainer.innerHTML = "<p>Section: " + section + "</p><p>Teacher: " + teacherName + "</p>";
+            var timings = student["Timings"];
+            var murabbiName = student["Murabbi name"];
+            infoContainer.innerHTML = "<p>Name: " + applicantName + "</p><p>Section: " + section + "</p><p>Timings: " + timings + "</p><p>Murabbi: " + murabbiName + "</p>";
         } else {
             infoContainer.innerHTML = "<p>Student not found</p>";
         }
@@ -34,3 +36,4 @@ function displayInfo() {
 
     reader.readAsArrayBuffer(file);
 }
+
