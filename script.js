@@ -1,23 +1,19 @@
+// Assuming you're using Papa Parse library for CSV parsing
 function displayInfo() {
     var phoneNumber = document.getElementById("phoneNumber").value;
 
-    // Fetch the Excel file path
-    var excelFilePath = "For Online Database.xlsx";
+    // Fetch the CSV file path
+    var csvFilePath = "student_data.csv";
 
-    // Fetch the student data from the Excel file
-    fetch(excelFilePath)
-        .then(response => response.arrayBuffer())
-        .then(data => {
-            var workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
-
-            // Assuming the data is in the "Admissions 2024" sheet
-            var worksheet = workbook.Sheets["Admissions 2024"];
-
-            // Convert the worksheet to JSON
-            var jsonData = XLSX.utils.sheet_to_json(worksheet);
+    // Fetch the student data from the CSV file
+    Papa.parse(csvFilePath, {
+        download: true,
+        header: true,
+        complete: function(results) {
+            var studentData = results.data;
 
             // Find the student data based on the phone number
-            var student = jsonData.find(function (student) {
+            var student = studentData.find(function(student) {
                 return student["Phone last 7 digits"] === phoneNumber;
             });
 
@@ -34,8 +30,6 @@ function displayInfo() {
             } else {
                 infoContainer.innerHTML = "Student with provided phone number not found.";
             }
-        })
-        .catch(error => {
-            console.error('Error fetching data from Excel file:', error);
-        });
+        }
+    });
 }
