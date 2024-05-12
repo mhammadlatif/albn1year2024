@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information</title>
+    <title>Student Information Lookup</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Student Information</h1>
-        <input type="file" id="fileInput">
-        <input type="text" id="phoneNumber" placeholder="Enter your phone number">
-        <button onclick="displayInfo()">Submit</button>
-        <div id="infoContainer">
-            <!-- Information will be displayed here -->
+        <h1>Student Information Lookup</h1>
+        <div class="input-container">
+            <label for="phoneNumber">Enter Phone Number (Last 7 Digits):</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+            <button onclick="displayInfo()">Search</button>
         </div>
+        <div id="infoContainer"></div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
