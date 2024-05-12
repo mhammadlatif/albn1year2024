@@ -27,6 +27,15 @@ function displayInfo() {
                 var section = student["Section"];
                 var timings = student["Timings"];
                 var murabbiName = student["Murabbi name"];
-                infoContainer.innerHTML = "<p>Name: " + applicant
-
-
+                infoContainer.innerHTML = "<p>Name: " + applicantName + "</p>" +
+                                          "<p>Section: " + section + "</p>" +
+                                          "<p>Timings: " + timings + "</p>" +
+                                          "<p>Murabbi Name: " + murabbiName + "</p>";
+            } else {
+                infoContainer.innerHTML = "Student with provided phone number not found.";
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data from Excel file:', error);
+        });
+}
